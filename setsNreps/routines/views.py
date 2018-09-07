@@ -1,4 +1,9 @@
-from .models import MuscleGroup
+from rest_framework import generics
 
-class MuscleGroupList()
+from routines.models import MuscleGroup
+from routines.serializers.serializers import MuscleGroupSerializer
+
+
+class MuscleGroupList(generics.ListCreateAPIView):
     queryset = MuscleGroup.objects.all()
+    serializer_class = MuscleGroupSerializer

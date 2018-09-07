@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from routines import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/muscle_groups/', views.MuscleGroupList.as_view())
 ]

@@ -8,11 +8,13 @@ class MuscleGroup(models.Model):
 
 class Exercise(models.Model):
     name = models.CharField(max_length=100)
+    muscle_groups = models.ManyToManyField(MuscleGroup)
 
     def __str__(self):
         return self.name
 
 class Session(models.Model):
+    notes = models.TextField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=100)
     weight = models.PositiveIntegerField()
     warmup = models.BooleanField(default=True)
@@ -22,7 +24,7 @@ class Session(models.Model):
         return f' warmup: {self.warmup}, {self.name} - {self.weight}, complete: {self.complete}'
 
 class Set(models.Model):
-    notes = models.TextField(max_length=500, null=True, blank=True)
+    notes = models.TextField(max_length=255, null=True, blank=True)
     exercise = models.ForeignKey('Exercise', on_delete=models.CASCADE)
     previous = models.PositiveIntegerField()
     weight = models.PositiveIntegerField()

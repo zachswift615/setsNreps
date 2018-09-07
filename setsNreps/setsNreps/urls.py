@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/muscle_groups/', views.MuscleGroupList.as_view()),
     path('api/exercises/', views.ExerciseList.as_view()),
+    path('api/sessions/', views.SessionList.as_view()),
+    path('api/sets/', views.SetList.as_view()),
 ]

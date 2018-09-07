@@ -1,22 +1,22 @@
 from rest_framework import serializers
-from routines.models import MuscleGroup, Exercise
+from routines.models import MuscleGroup, Exercise, Session, Set
 
 class MuscleGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = MuscleGroup
-        fields = ('name', 'id',)
+        fields = ('id', 'name',)
 
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exercise
         fields = ('id', 'name', 'muscle_groups',)
 
-# class SnippetSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Snippet
-#         fields = ('id', 'title', 'code', 'linenos', 'language', 'style')
-#
-# class SnippetSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Snippet
-#         fields = ('id', 'title', 'code', 'linenos', 'language', 'style')
+class SessionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Session
+        fields = ('id', 'notes', 'name', 'weight', 'warmup', 'complete', 'user')
+
+class SetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Set
+        fields = ('id', 'notes', 'warmup', 'exercise', 'previous', 'weight', 'reps', 'reps', 'complete')

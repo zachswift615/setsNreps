@@ -19,6 +19,7 @@ class Session(models.Model):
     weight = models.PositiveIntegerField()
     warmup = models.BooleanField(default=True)
     complete = models.BooleanField(default=True)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     def __str__(self):
         return f' warmup: {self.warmup}, {self.name} - {self.weight}, complete: {self.complete}'
@@ -37,11 +38,4 @@ class Set(models.Model):
     def __str__(self):
         return f' warmup: self.notes, {self.warmup}, self.name, previous: {self.previous}, weight: {self.weight}, reps: {self.reps}, complete: {self.complete}'
 
-class User(models.Model):
-    name = models.CharField(max_length=100)
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
 

@@ -20,5 +20,6 @@ from routines import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/muscle_groups/', views.MuscleGroupList.as_view())
+    path('api/muscle_groups/', views.MuscleGroupList.as_view()),
+    path('api/exercises/', views.ExerciseList.as_view()),
 ]

@@ -1,10 +1,12 @@
 from rest_framework import generics
+from django.shortcuts import get_object_or_404
+from rest_framework.authtoken.models import Token
 
-from routines.models import MuscleGroup
-from routines.models import Exercise
-from routines.models import Session
-from routines.models import Set
-from routines.serializers.serializers import MuscleGroupSerializer, ExerciseSerializer, SessionSerializer, SetSerializer
+from api.models import MuscleGroup
+from api.models import Exercise
+from api.models import Session
+from api.models import Set
+from api.serializers.serializers import MuscleGroupSerializer, ExerciseSerializer, SessionSerializer, SetSerializer
 
 
 class MuscleGroupList(generics.ListCreateAPIView):

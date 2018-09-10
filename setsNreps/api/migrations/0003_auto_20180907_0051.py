@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('routines', '0002_auto_20180907_0041'),
+        ('api', '0002_auto_20180907_0041'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='set',
             name='exercise',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='routines.Exercise'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='api.Exercise'),
             preserve_default=False,
         ),
         migrations.AlterField(

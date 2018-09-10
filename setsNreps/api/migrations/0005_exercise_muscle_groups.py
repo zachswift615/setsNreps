@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('routines', '0004_set_session'),
+        ('api', '0004_set_session'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='exercise',
             name='muscle_groups',
-            field=models.ManyToManyField(to='routines.MuscleGroup'),
+            field=models.ManyToManyField(to='api.MuscleGroup'),
         ),
     ]

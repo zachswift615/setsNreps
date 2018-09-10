@@ -7,14 +7,14 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('routines', '0003_auto_20180907_0051'),
+        ('api', '0003_auto_20180907_0051'),
     ]
 
     operations = [
         migrations.AddField(
             model_name='set',
             name='session',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='routines.Session'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='api.Session'),
             preserve_default=False,
         ),
     ]

@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('routines', '0005_exercise_muscle_groups'),
+        ('api', '0005_exercise_muscle_groups'),
     ]
 
     operations = [

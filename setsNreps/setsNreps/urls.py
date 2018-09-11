@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/muscle_groups/', views.MuscleGroupList.as_view()),
     path('api/exercises/', views.ExerciseList.as_view()),
+    path('api/session/new-workout/', views.new_workout),
     path('api/sessions/', views.SessionList.as_view()),
     path('api/sets/', views.SetList.as_view()),
     path('api-token-auth/', obtain_auth_token),

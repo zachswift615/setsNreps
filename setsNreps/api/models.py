@@ -16,13 +16,11 @@ class Exercise(models.Model):
 class Session(models.Model):
     notes = models.TextField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=100)
-    weight = models.PositiveIntegerField()
-    warmup = models.BooleanField(default=True)
     complete = models.BooleanField(default=True)
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f' warmup: {self.warmup}, {self.name} - {self.weight}, complete: {self.complete}'
+        return f' warmup: {self.name}, complete: {self.complete}'
 
 class Set(models.Model):
     notes = models.TextField(max_length=255, null=True, blank=True)

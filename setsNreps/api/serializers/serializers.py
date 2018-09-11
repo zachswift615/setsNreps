@@ -14,7 +14,7 @@ class ExerciseSerializer(serializers.ModelSerializer):
 class SessionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Session
-        fields = ('id', 'notes', 'name', 'weight', 'warmup', 'complete', 'user')
+        fields = ('id', 'notes', 'name', 'complete', 'user')
 
 class SetSerializer(serializers.ModelSerializer):
     class Meta:

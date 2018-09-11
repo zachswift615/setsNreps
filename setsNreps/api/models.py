@@ -1,4 +1,8 @@
 from django.db import models
+from django.conf import settings
+# from django.contrib.auth.models import get_user_model
+
+from django.contrib.auth.models import User
 
 class MuscleGroup(models.Model):
     name = models.CharField(max_length=100)
@@ -17,7 +21,7 @@ class Session(models.Model):
     notes = models.TextField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=100)
     complete = models.BooleanField(default=True)
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f' warmup: {self.name}, complete: {self.complete}'

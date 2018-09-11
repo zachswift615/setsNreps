@@ -9,9 +9,15 @@ class MuscleGroupSerializer(serializers.ModelSerializer):
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Exercise
-        fields = ('id', 'name', 'muscle_groups',)
+        fields = ('id', 'name', 'muscle_groups')
 
 class SessionSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField('_user')
+
+    def _user(self, obj):
+        request = getattr(self.context, 'request', None)
+        if request:
+            return request.user
     class Meta:
         model = Session
         fields = ('id', 'notes', 'name', 'complete', 'user')

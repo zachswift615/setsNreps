@@ -26,5 +26,7 @@ urlpatterns = [
     path('api/session/new-workout/', views.new_workout),
     path('api/sessions/', views.SessionList.as_view()),
     path('api/sets/', views.SetList.as_view()),
+    path('api/emptyworkout', views.EmptyWorkout.as_view()),
     path('api-token-auth/', obtain_auth_token),
+
 ]

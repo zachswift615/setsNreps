@@ -4,6 +4,7 @@ import NotFound from './NotFound';
 import Login from './Login';
 import HomePage from './HomePage';
 import EmptyWorkout from './EmptyWorkout';
+import Exercises from './Exercises';
 
 function isLoggedIn() {
     return localStorage.getItem('api-token') != null;

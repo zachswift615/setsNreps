@@ -29,12 +29,12 @@ class Session(models.Model):
 class Set(models.Model):
     notes = models.TextField(max_length=255, null=True, blank=True)
     exercise = models.ForeignKey('Exercise', on_delete=models.CASCADE)
-    previous = models.PositiveIntegerField()
-    weight = models.PositiveIntegerField()
+    previous = models.IntegerField()
+    weight = models.IntegerField()
     warmup = models.BooleanField(default=True)
     complete = models.BooleanField(default=True)
-    reps = models.PositiveIntegerField()
-    order = models.PositiveIntegerField()
+    reps = models.IntegerField()
+    set_number = models.IntegerField(null=True, blank=True)
     session = models.ForeignKey('Session', on_delete=models.CASCADE)
 
     def __str__(self):

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import HomePage from './HomePage';
+// import './Login.css'
 
 export default class Login extends Component {
     //Set initial state
@@ -49,7 +50,7 @@ export default class Login extends Component {
                 return <Redirect to="/"/>
             }
             return (
-                <form onSubmit={this.handleLogin}>
+                <form onSubmit={this.handleLogin} className="login">
                     <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <fieldset>
                         <label htmlFor="inputEmail">
@@ -68,14 +69,6 @@ export default class Login extends Component {
                             id="password"
                             placeholder="Password"
                             required="" />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="remember">
-                            Remember Me
-                        </label>
-                        <input onChange={this.handleChecked}
-                               defaultChecked={this.state.remember}
-                               type="checkbox" name="remember" id="remember"/>
                     </fieldset>
                     <fieldset>
                         <button type="submit">

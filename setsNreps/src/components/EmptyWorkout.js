@@ -1,39 +1,34 @@
 import React, { Component } from "react";
+import { new_set } from "../helpers";
 
 export default class EmptyWorkout extends Component {
     state = {
         exercises: [],
-        exercise: {},
+        exercise_id: 1,
         session: {}
     }
     handleChange = (event) => {
-        this.setState({exercise: event.target.value});
-    }
+        console.log(event)
+            this.setState(
+                {
+                    [event.currentTarget.name]: event.currentTarget.value
+                }
+            )
+    };
 
     onSubmit = (e) => {
-        e.preventDefault()
-        fetch('http://localhost:8000/api/set/new-set/', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "TOKEN " + JSON.parse(localStorage.getItem('api-token'))
-            },
-            body: JSON.stringify({
-                exercise_id: 1,
-                previous: 0,
-                weight: 0,
-                reps: 0,
-                session_id: this.state.session.id,
-                order: 1
-            })
-        })
-            .then(r => r.json())
-            .then((response) => {
+        e.preventDefault();
+        new_set(
+            this.state.exercise_id,
+            0,
+            this.state.weight,
+            this.state.reps,
+            this.state.session.id,
+            1     
+        ).then((response) => {
                 // call whatever function you have to re-get all the sets for a workout
                 // this.refreshSetsForWorkoutID() //example name for a function like that.
                 // also, you'll have to adjust the /api/sets/ endpoint to filter by workout_id
-            }).catch((e) => {
-                console.log(e);
             });
 
     }
@@ -44,9 +39,8 @@ export default class EmptyWorkout extends Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "TOKEN " + JSON.parse(localStorage.getItem("api-token"))
+        Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
       },
-      // user: {"username": "jswift"},
       body: JSON.stringify({ name: "Abs and stuff" })
     })
       .then(r => r.json())
@@ -58,7 +52,7 @@ export default class EmptyWorkout extends Component {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "TOKEN " + JSON.parse(localStorage.getItem("api-token"))
+        Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
       }
     })
       .then(r => r.json())
@@ -68,18 +62,24 @@ export default class EmptyWorkout extends Component {
   }
 
   render() {
+    let optionItems = this.state.exercises.map(exercise => {
+        return <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
+    })
+    optionItems.unshift(<option key='blank' value='Select Exercise'>Select Exercise</option>)
+
     return (
       <div>
         <h1>New Workout</h1>
         <form>
+            <label>Notes<textarea name="notes" onChange={this.handleChange}></textarea></label><br></br>
             <select type="text" name="exercise" onChange={this.handleChange}>
             {
-                this.state.exercises.map(exercise => {
-                    return <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
-                })
+                optionItems
             }
-            </select>
-          <button onClick={this.onSubmit} >Add New Set</button>
+            </select><br></br>
+            <label>Weight<input type="number" name="weight" onChange={this.handleChange}></input></label><br></br>
+            <label>Reps<input type="number" name="reps" onChange={this.handleChange}></input></label><br></br>
+          <button onClick={this.onSubmit} >Add Exercise</button>
         </form>
       </div>
     );

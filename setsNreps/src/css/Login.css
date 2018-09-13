@@ -1,0 +1,8 @@
+.login {
+    position: absolute;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-image: url("../img/scott-webb-22420-unsplash.jpg");
+    background-size: cover;
+    height: 100%;
+}

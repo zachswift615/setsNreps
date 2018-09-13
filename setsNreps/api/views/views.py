@@ -97,8 +97,47 @@ class SetList(generics.ListCreateAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
 
+    def get_queryset(self):
+        queryset = Set.objects.all()
+        session_id = self.request.query_params.get('session_id', None)
+        if session_id is not None:
+            queryset = queryset.filter(session_id=session_id)
+        return queryset
 
 class SetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
 
+@csrf_exempt
+@api_view(http_method_names=['GET'])
+def table_friendly_set_list(request):
+   table_friendly_sets = []
+
+   session_id = int(request.query_params.get('session_id'))
+   sets_for_workout = Set.objects.filter(session_id=session_id).order_by('-date_created').all()
+
+   for set in sets_for_workout:
+       set_detail_dict = {
+           'exercise_name': set.exercise.name,
+           'sets': [
+
+           ],
+
+       }
+       table_friendly_sets.append(set_detail_dict)
+   for set_detail_dict in table_friendly_sets:
+       for set in sets_for_workout:
+           if set_detail_dict['exercise_name'] == set.exercise.name:
+               set_detail_dict['sets'].append({
+                   'weight': set.weight,
+                   'reps': set.reps,
+                   'session_id': set.session_id,
+                   'previous': set.previous,
+                   'set_number': set.set_number,
+                   'notes': set.notes,
+                   'exercise_id': set.exercise_id,
+                   'complete': set.complete,
+                   'warmup': set.warmup,
+                   'id': set.id
+               })
+   return HttpResponse(json.dumps(table_friendly_sets))

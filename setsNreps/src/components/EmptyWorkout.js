@@ -14,6 +14,20 @@ export default class EmptyWorkout extends Component {
                     [event.currentTarget.name]: event.currentTarget.value
                 }
             )
+    }
+
+    refreshSetsForSessionID = () => {
+        fetch(`http://localhost:8000/api/sets/?session_id=${this.state.session.id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+        Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
+            }
+        })
+        .then(r => r.json())
+        .then(response => {
+            this.setState({sets: response});
+        })
     };
 
     onSubmit = (e) => {

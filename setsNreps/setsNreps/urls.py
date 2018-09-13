@@ -37,6 +37,8 @@ urlpatterns = [
     url('api/sessions/', views.SessionList.as_view()),
     url('api/sets/', views.SetList.as_view()),
 
+    url('api/set/table-friendly-set-list/', views.table_friendly_set_list),
+
     url(r'^api/session/(?P<pk>[0-9]+)/$', views.SessionDetail.as_view()),
     url(r'^api/sets/(?P<pk>[0-9]+)/$', views.SetDetail.as_view()),
 

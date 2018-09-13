@@ -22,9 +22,11 @@ class Session(models.Model):
     name = models.CharField(max_length=100)
     complete = models.BooleanField(default=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_completed = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f' warmup: {self.name}, complete: {self.complete}'
+        return f' id: {self.id},warmup: {self.name}, complete: {self.complete}'
 
 class Set(models.Model):
     notes = models.TextField(max_length=255, null=True, blank=True)
@@ -36,8 +38,10 @@ class Set(models.Model):
     reps = models.IntegerField()
     set_number = models.IntegerField(null=True, blank=True)
     session = models.ForeignKey('Session', on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_completed = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-        return f' warmup: self.notes, {self.warmup}, self.name, previous: {self.previous}, weight: {self.weight}, reps: {self.reps}, complete: {self.complete}'
+        return f'previous: {self.previous}, weight: {self.weight}, reps: {self.reps}, complete: {self.complete}'
 
 

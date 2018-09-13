@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import HomePage from './HomePage';
-// import './Login.css'
+import '../css/Login.css'
 
 export default class Login extends Component {
     //Set initial state

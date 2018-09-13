@@ -108,36 +108,47 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
 
+
 @csrf_exempt
 @api_view(http_method_names=['GET'])
 def table_friendly_set_list(request):
-   table_friendly_sets = []
+    table_friendly_sets = []
 
-   session_id = int(request.query_params.get('session_id'))
-   sets_for_workout = Set.objects.filter(session_id=session_id).order_by('-date_created').all()
+    session_id = int(request.query_params.get('session_id'))
+    sets_for_workout = Set.objects.filter(session_id=session_id).order_by('date_created').all()
 
-   for set in sets_for_workout:
-       set_detail_dict = {
-           'exercise_name': set.exercise.name,
-           'sets': [
+    for set in sets_for_workout:
+        # check if there's already a top leve dict for this exercise
+        set_detail_dict_exists = False
+        for detail_dict in table_friendly_sets:
+            if set.exercise.name == detail_dict['exercise_name']:
+                set_detail_dict_exists = True
 
-           ],
+        if not set_detail_dict_exists:
+            set_detail_dict = {
+                'exercise_id': set.exercise.id,
+                'exercise_name': set.exercise.name,
+                'sets': [
 
-       }
-       table_friendly_sets.append(set_detail_dict)
-   for set_detail_dict in table_friendly_sets:
-       for set in sets_for_workout:
-           if set_detail_dict['exercise_name'] == set.exercise.name:
-               set_detail_dict['sets'].append({
-                   'weight': set.weight,
-                   'reps': set.reps,
-                   'session_id': set.session_id,
-                   'previous': set.previous,
-                   'set_number': set.set_number,
-                   'notes': set.notes,
-                   'exercise_id': set.exercise_id,
-                   'complete': set.complete,
-                   'warmup': set.warmup,
-                   'id': set.id
-               })
-   return HttpResponse(json.dumps(table_friendly_sets))
+                ],
+
+            }
+            table_friendly_sets.append(set_detail_dict)
+
+    for set_detail_dict in table_friendly_sets:
+        for set in sets_for_workout:
+            if set_detail_dict['exercise_name'] == set.exercise.name:
+                set_detail_dict['sets'].append({
+                    'weight': set.weight,
+                    'reps': set.reps,
+                    'session_id': set.session_id,
+                    'previous': set.previous,
+                    'set_number': set.set_number,
+                    'notes': set.notes,
+                    'exercise_id': set.exercise_id,
+                    'complete': set.complete,
+                    'warmup': set.warmup,
+                    'id': set.id
+                })
+    # TODO: sort the exercises and the sets with the oldest at the top
+    return HttpResponse(json.dumps(table_friendly_sets))

@@ -50,32 +50,29 @@ export default class Login extends Component {
                 return <Redirect to="/"/>
             }
             return (
+                <div  className="loadingPageLogin">
                 <form onSubmit={this.handleLogin} className="login">
-                    <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-                    <fieldset>
-                        <label htmlFor="inputEmail">
-                            User Name
+                    <h1 className="h3 mb-3 font-weight-normal">setsNreps</h1>
+                        <label htmlFor="inputEmail" className="sr-only">
+                            user name
                         </label>
-                        <input ref={this.userNameRef} onChange={this.handleFieldChange} type="text"
+                        <input className='form-control' ref={this.userNameRef} onChange={this.handleFieldChange} type="text"
                             id="email"
-                            placeholder="User Name"
+                            placeholder="user name"
                             required="" autoFocus="" />
-                    </fieldset>
-                    <fieldset>
-                        <label htmlFor="inputPassword">
-                            Password
+                        <label htmlFor="inputPassword" className="sr-only">
+                            password
                         </label>
-                        <input ref={this.passwordRef} onChange={this.handleFieldChange} type="password"
+                        <input className='form-control' ref={this.passwordRef} onChange={this.handleFieldChange} type="password"
                             id="password"
-                            placeholder="Password"
+                            placeholder="password"
                             required="" />
-                    </fieldset>
-                    <fieldset>
-                        <button type="submit">
+                        <button className="btn-lg btn btn-outline btn-block form-signin" type="submit">
                             Sign in
                         </button>
-                    </fieldset>
+                    <p className="mt-5 mb-3 text-muted copyRight">© setsNreps 2018</p>
                 </form>
+                        </div>
             )
         }
     }

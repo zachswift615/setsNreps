@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import NotFound from './NotFound';
 import Login from './Login';
 import HomePage from './HomePage';
-import EmptyWorkout from './EmptyWorkout';
+import SessionDetails from './SessionDetails';
 import Exercises from './Exercises';
 
 function isLoggedIn() {
@@ -24,10 +24,9 @@ export default class Router extends React.Component {
                             return <Login/>
                         }
                     }}/>
-                    <Route exact path="/" component={EmptyWorkout}/>
-                    <Route render={(props) => {
+                    <Route exact path="/session/:sessionId" render={(props) => {
                         if (isLoggedIn()) {
-                            return <EmptyWorkout/>
+                            return <SessionDetails sessionId={props.match.params.sessionId}/>
                         } else {
                             return <Login/>
                         }

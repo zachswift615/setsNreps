@@ -27,7 +27,20 @@ export default class ExerciseTable extends Component {
   ];
 
   onCellEdit = (oldValue, newValue, row, column) => {
-    debugger;
+    if (column.dataField == 'weight' || column.dataField =='reps') {
+        newValue = parseInt(newValue)
+    }
+    fetch(`http://localhost:8000/api/sets/${row.id}/`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
+        },
+        body: JSON.stringify(
+            {[column.dataField]: newValue}
+        )
+    });
+      debugger;
     console.log('editing')
   }
 

@@ -20,7 +20,7 @@ class Exercise(models.Model):
 class Session(models.Model):
     notes = models.TextField(max_length=255, null=True, blank=True)
     name = models.CharField(max_length=100)
-    complete = models.BooleanField(default=True)
+    complete = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     date_completed = models.DateTimeField(null=True, blank=True)

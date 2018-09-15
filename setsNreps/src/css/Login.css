@@ -5,7 +5,6 @@ body {
 }
 
 .login {
-    width: 100%;
     width: 300px;
     padding: 5px;
     margin: 2px auto;
@@ -39,14 +38,22 @@ body {
     opacity: 0.9;
 }
 
-h1 {
+.loginContent {
     text-align: center;
 }
 
 .form-signin, .form-register {
-    width: 100%;
     width: 300px;
     padding: 5px;
     margin: 2px auto;
     text-align: center;
+}
+
+@media screen and (min-width: 375px) {
+    body {
+        text-align: center;
+    }
+    form {
+        display: inline-block;
+    }
 }

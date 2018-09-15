@@ -5,7 +5,7 @@ from api.models import MuscleGroup, Exercise, Session, Set
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('url', 'username', 'email', 'groups', 'date_created')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):

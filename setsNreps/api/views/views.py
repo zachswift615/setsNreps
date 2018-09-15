@@ -5,6 +5,7 @@ from rest_framework import generics
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from rest_framework.utils import json
 from rest_framework import viewsets
 from api.models import MuscleGroup
@@ -47,16 +48,22 @@ class SessionList(generics.ListCreateAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
 
+    # def get_queryset(self):
+    #     if self.request.user:
+    #         return Session.objects.filter(user_id=self.request.user.id).order_by('_date_created').all()
+
 class SessionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
 
+    #    def get_queryset(self):
+    #     if self.request.user:
+    #         return Session.objects.filter(user_id=self.request.user.id).order_by('_date_created').all()
+
+
 class EmptyWorkout(generics.ListCreateAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
-    # def perform_create(self, serializer):
-    #     print(self.request.user)
-    #     serializer.save(user=self.request.user)
 
 @csrf_exempt
 @api_view(http_method_names=['POST'])
@@ -108,6 +115,8 @@ class SetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
 
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, partial=True, **kwargs)
 
 @csrf_exempt
 @api_view(http_method_names=['GET'])
@@ -151,4 +160,4 @@ def table_friendly_set_list(request):
                     'id': set.id
                 })
     # TODO: sort the exercises and the sets with the oldest at the top
-    return HttpResponse(json.dumps(table_friendly_sets))
+    return Response(table_friendly_sets)

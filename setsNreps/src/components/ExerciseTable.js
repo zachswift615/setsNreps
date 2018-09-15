@@ -11,17 +11,26 @@ export default class ExerciseTable extends Component {
     },
     {
       dataField: "reps",
-      text: "Reps"
+      text: "reps"
     },
     {
-        dataField: 'complete',
-        text: 'Complete',
-        editor: {
-          type: Type.CHECKBOX,
-          value: 'Y:N'
-        }
-      }
+      dataField: "complete",
+      text: "completed",
+      formatter: (cellContent, row) => (
+        <div className="checkbox disabled">
+          <label>
+            <input type="checkbox" checked={ row.complete }/>
+          </label>
+        </div>
+      )
+    },
   ];
+
+  onCellEdit = (oldValue, newValue, row, column) => {
+    debugger;
+    console.log('editing')
+  }
+
   render() {
     return (
       <div>
@@ -31,7 +40,11 @@ export default class ExerciseTable extends Component {
             keyField="id"
             data={this.props.exerciseDetails.sets}
             columns={this.columns}
-            cellEdit={cellEditFactory({ mode: "click" })}
+            cellEdit={cellEditFactory({
+              mode: "click",
+              blurToSave: true,
+              afterSaveCell: this.onCellEdit
+              })}
           />
         </div>
       </div>

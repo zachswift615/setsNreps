@@ -8,14 +8,28 @@ export default class SessionDetails extends Component {
         exercises: [],
         exercise: null,
         session: {},
+        editingTitle: false,
         tableFriendlySets: []
     }
+
     handleChange = (event) => {
         this.setState(
             {
                 [event.currentTarget.name]: event.currentTarget.value
             }
         )
+    };
+
+    toggleIsEditingTitle = () => {
+        this.setState({editingTitle: !this.state.editingTitle})
+    }
+
+    onTitleChange = (e) => {
+        const sessionCopy = {
+            ...this.state.session,
+        }
+        sessionCopy[e.currentTarget.name] = e.currentTarget.value;
+        this.setState({session: sessionCopy})
     }
 
     refreshSetsForSessionID = () => {
@@ -35,6 +49,24 @@ export default class SessionDetails extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.newSetFromExisting(this.state.exercise)
+    };
+
+    onSessionTitleEdit = (newTitle) => {
+        fetch(`http://localhost:8000/api/session/${this.props.sessionId}/`, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
+            },
+            body: JSON.stringify({
+                name: newTitle,
+            })
+        })
+            .then(r => r.json())
+            .then((response) => {
+                this.refreshSetsForSessionID()
+                this.toggleIsEditingTitle()
+            });
     }
 
     newSetFromExisting = (exerciseId) => {
@@ -70,6 +102,18 @@ export default class SessionDetails extends Component {
             .then(response => {
                 this.setState({tableFriendlySets: response});
             })
+        fetch(`http://localhost:8000/api/session/${this.props.sessionId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
+            }
+        })
+            .then(r => r.json())
+            .then(response => {
+                this.setState({session: response});
+            })
+        // get the list of all exercises and save them to state
         fetch("http://localhost:8000/api/exercises/", {
             method: "GET",
             headers: {
@@ -79,6 +123,7 @@ export default class SessionDetails extends Component {
         })
             .then(r => r.json())
             .then(response => {
+                console.log(response)
                 this.setState({exercises: response});
             });
     }
@@ -97,7 +142,16 @@ export default class SessionDetails extends Component {
                         <br/>
                     </a>
                 </div>
-                <h1>New Workout</h1>
+                {
+                    this.state.editingTitle ?
+                        <div className="form-inline session-name-editing-form">
+                            <input className="form-control session-name-input" type="text" name="name" onChange={this.onTitleChange}
+                                   value={this.state.session.name}/>
+                            <button className="btn btn-outline-info" onClick={() => this.onSessionTitleEdit(this.state.session.name)}>save</button>
+                        </div> :
+
+                        <h2 onClick={this.toggleIsEditingTitle}> {this.state.session.name}</h2>
+                }
                 {
                     this.state.tableFriendlySets.map((tableFriendlySet) => {
                         return <ExerciseTable key={tableFriendlySet.exercise_id}

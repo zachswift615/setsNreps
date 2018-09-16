@@ -9,9 +9,18 @@ body {
 
 .top-bar {
     padding: 16px;
+    padding-left: 0;
     text-align: left;
 }
 
 .add-exercise-btn {
     margin-top: 16px;
+}
+
+.session-name-input {
+    margin-right: 8px;
+}
+
+.session-name-editing-form {
+    margin-bottom: 8px;
 }

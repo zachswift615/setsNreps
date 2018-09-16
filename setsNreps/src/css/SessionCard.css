@@ -2,7 +2,12 @@
     width: 100%;
     margin-top: 16px;
 }
-
+.card-text {
+    line-height: 0.5;
+}
+.home-page-container .card-body .card-subtitle {
+    margin-bottom: 16px !important;
+}
 body {
     background-color: white;
 }

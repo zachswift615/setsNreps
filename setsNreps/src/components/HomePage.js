@@ -43,13 +43,25 @@ export default class HomePage extends Component {
             });
     }
 
+    logout = () => {
+        localStorage.removeItem('api-token');
+        this.setState({ logout: true })
+    }
+
     render() {
+        if(this.state.logout) {
+            return <Redirect to={'login'}/>
+        }
+
         if (this.state.newWorkout) {
             return <Redirect to={`session/${this.state.newWorkout.id}`}/>
         }
 
         return (
             <div>
+                <div className={'top-bar'}>
+                    <button onClick={this.logout} className={'btn btn-sm btn-light'}>logout</button>
+                </div>
                 <h1>Start Workout</h1>
                 <h3>Quick Start</h3>
                 <button onClick={this.onClick}>Create New Workout</button>

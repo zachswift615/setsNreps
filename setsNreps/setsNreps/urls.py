@@ -24,7 +24,6 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
-
 urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^', include(router.urls)),
@@ -39,6 +38,7 @@ urlpatterns = [
     url(r'^api/sets/$', views.SetList.as_view()),
 
     url('api/set/table-friendly-set-list/', views.table_friendly_set_list),
+    url(r'^api/new-set-from-existing/$', views.new_set_from_existing),
 
     url(r'^api/session/(?P<pk>[0-9]+)/$', views.SessionDetail.as_view()),
 

@@ -10,7 +10,6 @@ export default class SessionDetails extends Component {
         tableFriendlySets: []
     }
     handleChange = (event) => {
-        console.log(event)
         this.setState(
             {
                 [event.currentTarget.name]: event.currentTarget.value
@@ -34,18 +33,23 @@ export default class SessionDetails extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        new_set(
-            this.state.exercise,
-            0,
-            this.state.weight,
-            this.state.reps,
-            this.props.sessionId,
-            1
-        ).then((response) => {
-            // call whatever function you have to re-get all the tableFriendlySets for a workout
-            this.refreshSetsForSessionID()
-            // also, you'll have to adjust the /api/tableFriendlySets/ endpoint to filter by workout_id
-        });
+        fetch(`http://localhost:8000/api/new-set-from-existing/`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
+            },
+            body: JSON.stringify({
+                exercise_id: this.state.exercise,
+                session_id: this.props.sessionId
+            })
+        })
+            .then(r => r.json())
+            .then((response) => {
+                // call whatever function you have to re-get all the tableFriendlySets for a workout
+                this.refreshSetsForSessionID()
+                // also, you'll have to adjust the /api/tableFriendlySets/ endpoint to filter by workout_id
+            });
 
     }
 
@@ -84,7 +88,9 @@ export default class SessionDetails extends Component {
         return (
             <div>
                 <div>
-                    <a href="/"><button className={'btn btn-light btn-sm'}>back</button></a>
+                    <a href="/">
+                        <button className={'btn btn-light btn-sm'}>back</button>
+                    </a>
                 </div>
                 <h1>New Workout</h1>
                 {
@@ -95,15 +101,11 @@ export default class SessionDetails extends Component {
                     })
                 }
                 <form>
-                    <label>Notes<textarea name="notes" onChange={this.handleChange}/></label><br/>
                     <select type="text" name="exercise" onChange={this.handleChange}>
                         {
                             optionItems
                         }
-                    </select><br/>
-                    <label>Weight<input type="number" name="weight"
-                                        onChange={this.handleChange}/></label><br/>
-                    <label>Reps<input type="number" name="reps" onChange={this.handleChange}/></label><br/>
+                    </select>
                     <button onClick={this.onSubmit}>Add Exercise</button>
                 </form>
             </div>

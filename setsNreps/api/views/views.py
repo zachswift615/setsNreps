@@ -1,7 +1,8 @@
+import datetime
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User, Group
-from rest_framework import generics
+from rest_framework import generics, status
 from django.shortcuts import get_object_or_404
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
@@ -171,3 +172,61 @@ def table_friendly_set_list(request):
                 })
     # TODO: sort the exercises and the sets with the oldest at the top
     return Response(table_friendly_sets)
+
+
+def format_error_response(message):
+    return json.dumps({
+        'status': 'error',
+        'message': message
+    })
+
+
+@csrf_exempt
+@api_view(http_method_names=['POST'])
+def new_set_from_existing(request):
+    body = json.loads(request.body)
+    exercise_id = int(body.get('exercise_id'))
+    session_id = int(body.get('session_id'))
+
+    if exercise_id is None:
+        return Response(format_error_response('missing required field exercise_id'), status=status.HTTP_406_NOT_ACCEPTABLE)
+
+    most_recent_exercise_set = Set.objects.filter(
+        warmup=False, complete=True,
+        exercise=exercise_id).order_by('-date_created').all()
+
+    if most_recent_exercise_set:
+        most_recent_exercise_set = most_recent_exercise_set[0]
+
+        most_recent_is_from_same_workout = most_recent_exercise_set.session_id == session_id
+
+        if most_recent_is_from_same_workout:
+            # find other sets in the workout to determine the set number for this one
+            new_set_number = most_recent_exercise_set.set_number + 1
+        else:
+            new_set_number = 1
+
+        new_set = Set(
+            date_created=datetime.datetime.utcnow(),
+            exercise_id=exercise_id,
+            set_number=new_set_number,
+            weight=most_recent_exercise_set.weight,
+            reps=most_recent_exercise_set.reps,
+            warmup=False,
+            previous=1,
+            complete=False,
+            session_id=session_id)
+    else:
+        new_set = Set(
+            date_created=datetime.datetime.utcnow(),
+            exercise_id=exercise_id,
+            set_number=1,
+            previous=1,
+            weight=0,
+            reps=0,
+            session_id=session_id,
+            warmup=False,
+            complete=False
+        )
+    new_set.save()
+    return Response(SetSerializer(new_set).data)

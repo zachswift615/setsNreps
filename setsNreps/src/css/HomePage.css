@@ -1,0 +1,12 @@
+.home-page-container {
+    max-width: 500px;
+}
+
+.top-bar {
+    padding: 16px;
+    text-align: right;
+}
+
+h1 {
+    text-align: center;
+}

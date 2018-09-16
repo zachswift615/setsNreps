@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom'
 import SessionCard from "./SessionCard";
+import '../css/HomePage.css';
 
 
 export default class HomePage extends Component {
@@ -58,13 +59,12 @@ export default class HomePage extends Component {
         }
 
         return (
-            <div>
+            <div className="container home-page-container">
                 <div className={'top-bar'}>
-                    <button onClick={this.logout} className={'btn btn-sm btn-light'}>logout</button>
+                    <button onClick={this.logout} className={'btn btn-sm btn-info'}>logout</button>
                 </div>
                 <h1>Start Workout</h1>
-                <h3>Quick Start</h3>
-                <button onClick={this.onClick}>Create New Workout</button>
+                <button className="btn btn-block btn-secondary" onClick={this.onClick}>Create New Workout</button>
                 {
                     this.state.sessions.map(session => {
                         return <SessionCard key={session.id} session={session}/>

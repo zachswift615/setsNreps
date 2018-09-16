@@ -44,7 +44,7 @@ body {
         text-align: center;
     }
 @media screen and (max-width: 576px) {
-    
+
     .sign-in-form-col {
         margin-top: 32px;
         margin-left: 0;

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import '../css/SessionCard.css';
 
 
 export default class SessionCard extends Component {
@@ -26,7 +27,7 @@ export default class SessionCard extends Component {
 
     render() {
         return (
-            <div className={"card"} style={{width: "18rem"}}>
+            <div className={"card"}>
                 <div className={"card-body"}>
                     <h5 className={"card-title"}>{this.props.session.name}</h5>
                     <h6 className={"card-subtitle mb-2 text-muted"}>{this.props.session.date_created}</h6>
@@ -37,7 +38,7 @@ export default class SessionCard extends Component {
                             </p>
                         })
                     }
-                    <a href={`/session/${this.props.session.id}`} className={"card-link"}><button className="btn btn-sm btn-light">Edit</button></a>
+                    <a href={`/session/${this.props.session.id}`} className={"card-link"}><button className="btn btn-sm btn-info">Edit</button></a>
                 </div>
             </div>
         )

@@ -34,6 +34,10 @@ export default class SessionDetails extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        this.newSetFromExisting(this.state.exercise)
+    }
+
+    newSetFromExisting = (exerciseId) => {
         fetch(`http://localhost:8000/api/new-set-from-existing/`, {
             method: 'POST',
             headers: {
@@ -41,7 +45,7 @@ export default class SessionDetails extends Component {
                 Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
             },
             body: JSON.stringify({
-                exercise_id: this.state.exercise,
+                exercise_id: exerciseId,
                 session_id: this.props.sessionId
             })
         })
@@ -51,7 +55,6 @@ export default class SessionDetails extends Component {
                 this.refreshSetsForSessionID()
                 // also, you'll have to adjust the /api/tableFriendlySets/ endpoint to filter by workout_id
             });
-
     }
 
     componentDidMount() {
@@ -90,8 +93,8 @@ export default class SessionDetails extends Component {
             <div className="container session-detail-container">
                 <div className="top-bar">
                     <a href="/">
-                        <button className={'btn btn-info btn-sm'}>back</button><br/>
-                        {/*<button onClick={this.logout} className={'btn btn-sm btn-info'}>logout</button>*/}
+                        <button className={'btn btn-info btn-sm'}>back</button>
+                        <br/>
                     </a>
                 </div>
                 <h1>New Workout</h1>
@@ -99,7 +102,8 @@ export default class SessionDetails extends Component {
                     this.state.tableFriendlySets.map((tableFriendlySet) => {
                         return <ExerciseTable key={tableFriendlySet.exercise_id}
                                               exerciseDetails={tableFriendlySet}
-                                              refreshSetsForSessionID={this.refreshSetsForSessionID}/>
+                                              refreshSetsForSessionID={this.refreshSetsForSessionID}
+                                              newSetFromExisting={this.newSetFromExisting}/>
                     })
                 }
                 <hr/>
@@ -109,7 +113,8 @@ export default class SessionDetails extends Component {
                             optionItems
                         }
                     </select>
-                    <button className="btn btn-block btn-info add-exercise-btn" onClick={this.onSubmit}>Add Exercise</button>
+                    <button className="btn btn-block btn-info add-exercise-btn" onClick={this.onSubmit}>Add Exercise
+                    </button>
                 </form>
             </div>
         );

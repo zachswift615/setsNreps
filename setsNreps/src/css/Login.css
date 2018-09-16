@@ -14,13 +14,13 @@ body {
     max-width: 100%;
 }
 
-.loadingPageLogin {
-    position: absolute;
-    width: 108%;
-    background-repeat: no-repeat;
-    background-image: url("../img/cyril-saulnier-250098-unsplash.jpg");
-    background-size: cover;
-    height: 100%;
+body {
+    width: 100%;
+    /*background-repeat: no-repeat;*/
+    background-color: #cccccc;
+    /*background-image: url("../img/cyril-saulnier-250098-unsplash.jpg");*/
+    /*background-size: cover;*/
+    /*height: 100%;*/
 }
 
 .copyRight {
@@ -49,6 +49,11 @@ body {
     text-align: center;
 }
 
+.loadingPageLogin {
+    max-width: 900px;
+    margin: 28% auto;
+}
+
 @media screen and (min-width: 375px) {
     body {
         text-align: center;
@@ -57,10 +62,5 @@ body {
         display: inline-block;
     }
     .loadingPageLogin {
-    position: absolute;
-    width: 108%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
 }
 }

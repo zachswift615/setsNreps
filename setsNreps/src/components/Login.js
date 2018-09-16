@@ -51,34 +51,41 @@ export default class Login extends Component {
         }
         return (
             <div className="row loadingPageLogin align-items-center">
-                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <h1 className=" font-weight-normal loginContent">SETS <span>&</span> REPS</h1>
-                    <h4 className=" font-weight-normal loginContent">sore today. strong tomorrow.</h4>
+                <div className="login-page-text-col">
+                    <h1 className="">SETS <span>&</span> REPS</h1>
+                    <h4 className="">sore today. strong tomorrow.</h4>
                 </div>
-                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div className="sign-in-form-col">
+
                     <form onSubmit={this.handleLogin} className="login">
-                        <label htmlFor="inputEmail" className="sr-only">
-                            user name
-                        </label>
-                        <input className='form-control' ref={this.userNameRef} onChange={this.handleFieldChange}
-                               type="text"
-                               id="email"
-                               placeholder="user name"
-                               required="" autoFocus=""/>
-                        <label htmlFor="inputPassword" className="sr-only">
-                            password
-                        </label>
-                        <input className='form-control' ref={this.passwordRef} onChange={this.handleFieldChange}
-                               type="password"
-                               id="password"
-                               placeholder="password"
-                               required=""/>
+                        <div className="form-group">
+                            <label htmlFor="username" className="sr-only">
+                                user name
+                            </label>
+                            <input className='form-control' ref={this.userNameRef} onChange={this.handleFieldChange}
+                                   type="text"
+                                   id="username"
+                                   placeholder="user name"
+                                   required="" autoFocus=""/>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="inputPassword" className="sr-only">
+                                password
+                            </label>
+                            <input className='form-control' ref={this.passwordRef} onChange={this.handleFieldChange}
+                                   type="password"
+                                   id="password"
+                                   placeholder="password"
+                                   required=""/>
+                        </div>
                         <button className="btn-lg btn btn-outline btn-block form-signin" type="submit">
                             Sign in
                         </button>
                     </form>
+
                 </div>
-                <p className="mt-5 mb-3 text-muted copyRight">© setsNreps 2018</p>
+                <p className="mt-5 mb-3 text-muted copyRight">© SETS & REPS 2018</p>
             </div>
         )
     }

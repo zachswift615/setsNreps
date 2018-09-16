@@ -33,7 +33,7 @@ class SessionSerializer(serializers.ModelSerializer):
             return request.user
     class Meta:
         model = Session
-        fields = ('id', 'notes', 'name', 'complete', 'user')
+        fields = ('id', 'notes', 'name', 'date_created', 'complete', 'user')
 
 class SetSerializer(serializers.ModelSerializer):
     # exercise_id = serializers.PrimaryKeyRelatedField(read_only=True)
@@ -49,5 +49,6 @@ class SetSerializer(serializers.ModelSerializer):
             'weight',
             'reps',
             'session_id',
+            'date_created',
             'complete'
         )

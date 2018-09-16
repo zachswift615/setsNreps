@@ -21,6 +21,7 @@ from api.serializers.serializers import (
     GroupSerializer
 )
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -36,34 +37,39 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+
 class MuscleGroupList(generics.ListCreateAPIView):
     queryset = MuscleGroup.objects.all()
     serializer_class = MuscleGroupSerializer
+
 
 class ExerciseList(generics.ListCreateAPIView):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer
 
+
 class SessionList(generics.ListCreateAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
 
-    # def get_queryset(self):
-    #     if self.request.user:
-    #         return Session.objects.filter(user_id=self.request.user.id).order_by('_date_created').all()
+    def get_queryset(self):
+        if self.request.user:
+            return Session.objects.filter(user_id=self.request.user.id).order_by('-date_created').all()
+
 
 class SessionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
 
-    #    def get_queryset(self):
-    #     if self.request.user:
-    #         return Session.objects.filter(user_id=self.request.user.id).order_by('_date_created').all()
+    def get_queryset(self):
+        if self.request.user:
+            return Session.objects.filter(user_id=self.request.user.id).order_by('-date_created').all()
 
 
 class EmptyWorkout(generics.ListCreateAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
+
 
 @csrf_exempt
 @api_view(http_method_names=['POST'])
@@ -75,6 +81,7 @@ def new_workout(request):
     new_session = Session(name=workout_name, user=request.user)
     new_session.save()
     return HttpResponse(json.dumps(SessionSerializer(new_session).data))
+
 
 @csrf_exempt
 @api_view(http_method_names=['POST'])
@@ -100,6 +107,7 @@ def new_set(request):
     new_set.save()
     return HttpResponse(json.dumps(SetSerializer(new_set).data))
 
+
 class SetList(generics.ListCreateAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
@@ -111,12 +119,14 @@ class SetList(generics.ListCreateAPIView):
             queryset = queryset.filter(session_id=session_id)
         return queryset
 
+
 class SetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Set.objects.all()
     serializer_class = SetSerializer
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, partial=True, **kwargs)
+
 
 @csrf_exempt
 @api_view(http_method_names=['GET'])

@@ -51,8 +51,6 @@ export default class SessionDetails extends Component {
 
     componentDidMount() {
         // get the list of all exercises and save them to state
-        console.log(this.props.sessionId)
-        console.log(`http://localhost:8000/api/set/table-friendly-set-list/?session_id=${this.props.sessionId}`);
         fetch(`http://localhost:8000/api/set/table-friendly-set-list/?session_id=${this.props.sessionId}`, {
             method: 'GET',
             headers: {
@@ -92,7 +90,8 @@ export default class SessionDetails extends Component {
                 {
                     this.state.tableFriendlySets.map((tableFriendlySet) => {
                         return <ExerciseTable key={tableFriendlySet.exercise_id}
-                                              exerciseDetails={tableFriendlySet}/>
+                                              exerciseDetails={tableFriendlySet}
+                                              refreshSetsForSessionID={this.refreshSetsForSessionID}/>
                     })
                 }
                 <form>

@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import cellEditFactory, {Type} from "react-bootstrap-table2-editor";
+import '../css/ExerciseTable.css'
 
 export default class ExerciseTable extends Component {
     columns = [
@@ -53,11 +54,12 @@ export default class ExerciseTable extends Component {
 
     render() {
         return (
-            <div>
+            <div className="exercise-table-container">
                 <div className="react-bootstrap-table">
-                    <h3>{this.props.exerciseDetails.exercise_name}</h3>
+                    <h4>{this.props.exerciseDetails.exercise_name}</h4>
                     <BootstrapTable
                         keyField="id"
+                        classes="table table-borderless table-sm"
                         data={this.props.exerciseDetails.sets}
                         columns={this.columns}
                         cellEdit={cellEditFactory({
@@ -65,7 +67,9 @@ export default class ExerciseTable extends Component {
                             blurToSave: true,
                             afterSaveCell: this.onCellEdit
                         })}
+                        bordered={false}
                     />
+                    <button className="btn btn-block btn-outline-info">Add Set</button>
                 </div>
             </div>
         );

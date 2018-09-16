@@ -1,0 +1,17 @@
+body {
+    background-color: white;
+}
+
+.session-detail-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.top-bar {
+    padding: 16px;
+    text-align: left;
+}
+
+.add-exercise-btn {
+    margin-top: 16px;
+}

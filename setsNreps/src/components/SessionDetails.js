@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {new_set} from "../helpers";
 import ExerciseTable from "./ExerciseTable";
+import '../css/SessionDetail.css';
 
 export default class SessionDetails extends Component {
     state = {
@@ -86,10 +87,11 @@ export default class SessionDetails extends Component {
         optionItems.unshift(<option key='blank' value='Select Exercise'>Select Exercise</option>)
 
         return (
-            <div>
-                <div>
+            <div className="container session-detail-container">
+                <div className="top-bar">
                     <a href="/">
-                        <button className={'btn btn-light btn-sm'}>back</button>
+                        <button className={'btn btn-info btn-sm'}>back</button><br/>
+                        {/*<button onClick={this.logout} className={'btn btn-sm btn-info'}>logout</button>*/}
                     </a>
                 </div>
                 <h1>New Workout</h1>
@@ -100,13 +102,14 @@ export default class SessionDetails extends Component {
                                               refreshSetsForSessionID={this.refreshSetsForSessionID}/>
                     })
                 }
+                <hr/>
                 <form>
-                    <select type="text" name="exercise" onChange={this.handleChange}>
+                    <select className="custom-select" type="text" name="exercise" onChange={this.handleChange}>
                         {
                             optionItems
                         }
                     </select>
-                    <button onClick={this.onSubmit}>Add Exercise</button>
+                    <button className="btn btn-block btn-info add-exercise-btn" onClick={this.onSubmit}>Add Exercise</button>
                 </form>
             </div>
         );

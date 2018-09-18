@@ -14,73 +14,76 @@ export default class ExerciseTable extends Component {
       dataField: "reps",
       text: "reps"
     },
-    // {
-    //   dataField: "complete",
-    //   text: "completed",
-    //   formatter: (cellContent, row) => (
-    //     <div className="checkbox disabled">
-    //       <label>
-    //         <input type="checkbox" checked={row.complete} />
-    //       </label>
-    //     </div>
-    //   )
-    // },
     {
-      dataField: "completed",
+      dataField: "df1",
+      text: "completed",
       isDummyField: true,
       editable: false,
-      text: "completed",
-      formatter: (cellContent, row) => {
-        if (row.complete) {
-          return (
-            <label>
-              <input className="label label-success" type="checkbox"/>
-            </label>
-          );
-        }
-      }
+      formatter: (cellContent, row) => (
+        <div className="checkbox">
+          <label>
+            <input
+              type="checkbox"
+              onChange={event => this.onToggleComplete(event, row.id)}
+              checked={row.complete}
+            />
+          </label>
+        </div>
+      )
     },
     {
-      dataField: "delete",
+      dataField: "df2",
       isDummyField: true,
       editable: false,
       text: "",
       formatter: (cellContent, row) => {
         return (
-          <button className="btn btn-sm btn-warning">delete</button>
+          <button
+            onClick={() => this.deleteSet(row.id)}
+            className="btn btn-sm btn-outline delete-button"
+          >
+            delete
+          </button>
         );
       }
     }
   ];
 
-  onCellEdit = (oldValue, newValue, row, column) => {
-    if (column.dataField == "weight" || column.dataField == "reps") {
-      newValue = parseInt(newValue);
-    }
-    if (column.dataField == "complete") {
-      if (newValue === "false") {
-        newValue = false;
-      } else {
-        newValue = true;
+  deleteSet = set_id => {
+    fetch(`http://localhost:8000/api/sets/${set_id}/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
       }
-    }
-    fetch(`http://localhost:8000/api/sets/${row.id}/`, {
+    }).then(this.props.refreshSetsForSessionID);
+  };
+
+  onToggleComplete = (event, set_id) => {
+    let body = { complete: event.currentTarget.checked };
+    this.updateSet(set_id, body)
+  };
+
+  updateSet = (set_id, body) => {
+    fetch(`http://localhost:8000/api/sets/${set_id}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
       },
-      body: JSON.stringify({ [column.dataField]: newValue })
+      body: JSON.stringify(body)
     })
       .then(r => r.json())
       .then(response => {
-        this.setState({ exercises: response });
+        this.props.refreshSetsForSessionID();
       });
   };
 
-  handleDeleteButtonClick = onClick => {
-    console.log("This is my custom function for DeleteButton click event");
-    onClick();
+  onCellEdit = (oldValue, newValue, row, column) => {
+    if (column.dataField == "weight" || column.dataField == "reps") {
+      newValue = parseInt(newValue);
+    }
+        this.updateSet(row.id, {[column.dataField]: newValue});
   };
 
   render() {

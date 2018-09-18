@@ -33,7 +33,7 @@ export default class ExerciseTable extends Component {
             isDummyField: true,
             editable: false,
             formatter: (cellContent, row) => (
-                <button onClick={() => this.deleteSet(row.id)} className={"btn btn-outline-warning btn-sm"}>delete</button>
+                <button onClick={() => this.deleteSet(row.id)} className={"btn btn-sm delete-button"}>delete</button>
             )
         }
     ];

@@ -28,7 +28,8 @@ export default class HomePage extends Component {
     }
 
     componentDidMount() {
-        this.refreshSessionList();
+      this.refreshSessionList();
+      document.body.style.backgroundColor = 'white';
     }
 
     logout = () => {

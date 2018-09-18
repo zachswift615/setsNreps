@@ -39,6 +39,7 @@ export default class SessionCard extends Component {
                         })
                     }
                     <a href={`/session/${this.props.session.id}`} className={"card-link"}><button className="btn btn-sm btn-info">Edit</button></a>
+                    <a className={"card-link"}><button className="btn btn-sm btn-warning">Delete</button></a>
                 </div>
             </div>
         )

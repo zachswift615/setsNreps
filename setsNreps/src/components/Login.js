@@ -19,6 +19,10 @@ export default class Login extends Component {
     userNameRef = React.createRef();
     passwordRef = React.createRef();
 
+    componentDidMount() {
+        document.body.style.backgroundColor = '#cccccc';
+    }
+
     // Update state whenever an input field is changed
     handleFieldChange = (e) => {
         const stateToChange = {}

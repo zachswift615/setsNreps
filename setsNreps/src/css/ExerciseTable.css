@@ -2,8 +2,8 @@
     margin-bottom: 32px;
 }
 
-.root {
-    color: white;
+.body {
+    background-color: white;
 }
 
 .delete-button {

@@ -49,6 +49,10 @@ export default class ExerciseTable extends Component {
     }
   ];
 
+  componentDidMount() {
+    document.body.style.backgroundColor = 'white';
+}
+
   deleteSet = set_id => {
     fetch(`http://localhost:8000/api/sets/${set_id}/`, {
       method: "DELETE",

@@ -1,12 +1,7 @@
 body {
-    margin: 0;
-    height: 100%;
-    padding-bottom: 20px;
-}
-
-body {
     width: 100%;
     background-color: #cccccc;
+    text-align: center;
 }
 
 .copyRight {
@@ -39,10 +34,8 @@ body {
 
 .sign-in-form-col {
         margin-left: 80px;
-    }
-body {
-        text-align: center;
-    }
+}
+
 @media screen and (max-width: 576px) {
 
     .sign-in-form-col {

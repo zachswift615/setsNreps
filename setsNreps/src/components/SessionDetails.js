@@ -90,6 +90,7 @@ export default class SessionDetails extends Component {
     }
 
     componentDidMount() {
+        document.body.style.backgroundColor = 'white';
         // get the list of all exercises and save them to state
         fetch(`http://localhost:8000/api/set/table-friendly-set-list/?session_id=${this.props.sessionId}`, {
             method: 'GET',
@@ -127,6 +128,7 @@ export default class SessionDetails extends Component {
                 this.setState({exercises: response});
             });
     }
+
 
     render() {
         let optionItems = this.state.exercises.map(exercise => {

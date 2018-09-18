@@ -9,7 +9,6 @@ export default class SessionCard extends Component {
     }
 
     componentDidMount() {
-        document.body.style.backgroundColor = 'white';
         fetch(`http://localhost:8000/api/set/table-friendly-set-list/?session_id=${this.props.session.id}`, {
             method: 'GET',
             headers: {
@@ -37,7 +36,7 @@ export default class SessionCard extends Component {
                         })
                     }
                     <a href={`/session/${this.props.session.id}`} className={"card-link"}><button className="btn btn-sm btn-info">Edit</button></a>
-                    <button className="btn btn-sm btn-warning" onClick={() => this.deleteSet(this.props.session.id)}>Delete</button>
+                    <button onClick={() => this.props.deleteSession(this.props.session.id)} className="btn btn-sm btn-warning delete-session-button">Delete</button>
                 </div>
             </div>
         )

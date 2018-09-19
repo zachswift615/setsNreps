@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import HomePage from './HomePage';
 import '../css/Login.css'
-import swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
 
-// const swal = require('sweetalert2')
+const swal = require('sweetalert')
 
 export default class Login extends Component {
     //Set initial state
@@ -45,10 +43,8 @@ export default class Login extends Component {
                 if (response.token) {
                     localStorage.setItem('api-token', JSON.stringify(response.token));
                     this.setState({goHome: true})
-                    // swal(
-                    //     'Do you want to continue'
-                    //   )
                 } else {
+                    swal ( "Oops" ,  "Something went wrong!" ,  "error" );
                     console.log(response)
                 }
             })

@@ -11,8 +11,16 @@
     margin-bottom: 16px !important;
 }
 
-.delete-session-button {
+.delete-session-btn {
     margin-left: 8px;
-    background-color: #ffae42;
+    background-color: #ec5a23b3;
 }
 
+.edit-btn {
+    background-color: rgb(27,201,215,1);
+}
+
+.copy-btn {
+    background-color: #cccccc;
+    margin-left: 8px;
+}

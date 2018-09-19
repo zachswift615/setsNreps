@@ -35,8 +35,9 @@ export default class SessionCard extends Component {
                             </p>
                         })
                     }
-                    <a href={`/session/${this.props.session.id}`} className={"card-link"}><button className="btn btn-sm btn-info">Edit</button></a>
-                    <button onClick={() => this.props.deleteSession(this.props.session.id)} className="btn btn-sm delete-session-button">Delete</button>
+                    <a href={`/session/${this.props.session.id}`} className={"card-link"}><button className="btn btn-sm edit-btn">Edit</button></a>
+                    <button onClick={() => this.props.deleteSession(this.props.session.id)} className="btn btn-sm delete-session-btn">Delete</button>
+                    <button className="btn btn-sm copy-btn">Copy</button>
                 </div>
             </div>
         )

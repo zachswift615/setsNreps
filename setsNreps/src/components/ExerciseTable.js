@@ -94,7 +94,7 @@ export default class ExerciseTable extends Component {
                         })}
                         bordered={false}
                     />
-                    <button className="btn btn-block btn-sm btn-outline-info" onClick={() => this.props.newSetFromExisting(this.props.exerciseDetails.exercise_id)}>Add Set</button>
+                    <button className="btn btn-block btn-sm addset-btn" onClick={() => this.props.newSetFromExisting(this.props.exerciseDetails.exercise_id)}>Add Set</button>
                 </div>
             </div>
         );

@@ -75,7 +75,7 @@ export default class HomePage extends Component {
         return (
             <div className="container home-page-container">
                 <div className={'top-bar'}>
-                    <button onClick={this.logout} className={'btn btn-sm btn-info'}>logout</button>
+                    <button onClick={this.logout} className={'btn btn-sm logout-btn'}>logout</button>
                 </div>
                 <h1>Start Workout</h1>
                 <button className="btn btn-block btn-secondary" onClick={this.onClick}>Create New Workout</button>

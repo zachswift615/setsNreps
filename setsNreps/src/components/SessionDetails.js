@@ -141,7 +141,7 @@ export default class SessionDetails extends Component {
             <div className="container session-detail-container">
                 <div className="top-bar">
                     <a href="/">
-                        <button className={'btn btn-info btn-sm'}>back</button>
+                        <button className={'btn back-btn btn-sm'}>back</button>
                         <br/>
                     </a>
                 </div>
@@ -170,7 +170,7 @@ export default class SessionDetails extends Component {
                             optionItems
                         }
                     </select>
-                    <button className="btn btn-block btn-info add-exercise-btn" onClick={this.onSubmit}>Add Exercise
+                    <button className="btn btn-block add-exercise-btn" onClick={this.onSubmit}>Add Exercise
                     </button>
                 </form>
             </div>

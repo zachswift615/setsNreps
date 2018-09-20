@@ -18,6 +18,7 @@ from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from django.conf.urls import include, url
 from django.urls import re_path
+from django.views.generic import TemplateView
 
 from api import views
 

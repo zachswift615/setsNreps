@@ -39,7 +39,6 @@ export default class Register extends React.Component {
     })
       .then(r => r.json())
       .then(response => {
-        console.log(response);
         if (response.token) {
           localStorage.setItem("api-token", JSON.stringify(response.token));
           this.setState({ home: true });
@@ -54,7 +53,6 @@ export default class Register extends React.Component {
             }
             let finalMessage = messages.join(', ')
             swal("Try again.", finalMessage, "error");
-          console.log(response);
         }
       });
   };
@@ -64,7 +62,7 @@ export default class Register extends React.Component {
           return <Redirect to='/'></Redirect>
       }
     return (
-      <div className="registration-form">
+      <div className="registration-form container">
         <form onSubmit={this.register}>
           <h2>Sign Up</h2>
           <div className="form-group">
@@ -107,7 +105,7 @@ export default class Register extends React.Component {
               ref={this.passwordConfirmRef}
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn submit-btn">
             Submit
           </button>
         </form>

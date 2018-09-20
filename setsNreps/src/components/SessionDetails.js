@@ -125,7 +125,6 @@ export default class SessionDetails extends Component {
         })
             .then(r => r.json())
             .then(response => {
-                console.log(response)
                 this.setState({exercises: response});
             });
     }

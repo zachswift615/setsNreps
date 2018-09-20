@@ -17,6 +17,7 @@ from django.contrib import admin
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from django.conf.urls import include, url
+from django.urls import re_path
 
 from api import views
 
@@ -27,7 +28,7 @@ router.register(r'groups', views.GroupViewSet)
 urlpatterns = [
     url('api/users/create-account', views.CreateAccount.as_view()),
     url(r'^api/', include(router.urls)),
-    url(r'^', include(router.urls)),
+    # url(r'^', include(router.urls)),
     url('admin/', admin.site.urls),
 
     url('api/muscle_groups/', views.MuscleGroupList.as_view()),
@@ -47,5 +48,5 @@ urlpatterns = [
     url('api/emptyworkout', views.EmptyWorkout.as_view()),
     url('api/api-token-auth/', obtain_auth_token),
 
-    # re_path(‘.*’, TemplateView.as_view(template_name=‘index.html’)),
+    # re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]

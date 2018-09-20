@@ -25,7 +25,6 @@ export default class HomePage extends Component {
             .then(response => {
                 this.setState({newWorkout: response});
             });
-        console.log('clicked')
     }
 
     componentDidMount() {
@@ -49,7 +48,6 @@ export default class HomePage extends Component {
         })
             .then(r => r.json())
             .then(response => {
-                console.log(response)
                 this.setState({sessions: response});
             });
     }

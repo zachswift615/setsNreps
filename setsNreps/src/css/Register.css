@@ -2,3 +2,7 @@
     width: 380px;
     margin: 5% auto;
 }
+
+.submit-btn {
+    background-color: rgb(27,201,215,1);
+}

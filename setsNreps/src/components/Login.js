@@ -31,8 +31,6 @@ export default class Login extends Component {
 
   handleLogin = e => {
     e.preventDefault();
-    console.log(this.userNameRef.current.value);
-    console.log(this.passwordRef.current.value);
     fetch(`${APIURL}api-token-auth/`, {
       method: "POST",
       headers: {
@@ -99,12 +97,12 @@ export default class Login extends Component {
                 required=""
               />
             </div>
-            <button className="btn-lg btn btn-block form-signin" type="submit">
+            <button className="signin-btn btn-lg btn btn-block form-signin" type="submit">
               Sign in
             </button>
           </form>
           <a href="/register">
-            <button className="btn-lg btn btn-block form-signin">
+            <button className="register-btn btn-lg btn btn-block form-signin">
               Register
             </button>
           </a>

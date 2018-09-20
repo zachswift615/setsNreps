@@ -42,6 +42,33 @@ class CreateAccount(APIView):
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@csrf_exempt
+@api_view(http_method_names=['POST'])
+def copy_session(request, pk=None):
+    if pk is None:
+        return Response(json.dumps({}), status=status.HTTP_400_BAD_REQUEST)
+    existing_session = Session.objects.get(pk=pk)
+    if existing_session.user_id != request.user.id:
+        return Response(json.dumps({}), status=status.HTTP_403_FORBIDDEN)
+    # remove primary key and save to copy to a new session
+    existing_session.pk = None
+    existing_session.save()
+
+    #rename variable bc it makes a new session
+    new_session = existing_session
+    new_session.date_created = datetime.datetime.utcnow()
+    new_session.complete = False
+    new_session.name = new_session.name + " (Copy)"
+    new_session.save()
+    sets_for_existing_session = Set.objects.filter(session_id=pk).all()
+    for session_set in sets_for_existing_session:
+        session_set.pk = None
+        session_set.complete = False
+        session_set.session_id = new_session.id
+        session_set.save()
+
+    return Response(SessionSerializer(new_session).data)
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.

@@ -64,6 +64,17 @@ export default class HomePage extends Component {
         }).then(this.refreshSessionList)
     }
 
+    copySession = (session_id) => {
+        fetch(`${APIURL}session/copy/${session_id}/`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Token " + JSON.parse(localStorage.getItem("api-token"))
+            }
+        }).then(r => r.json())
+            .then(this.refreshSessionList)
+    }
+
     render() {
         if(this.state.logout) {
             return <Redirect to={'login'}/>
@@ -82,7 +93,7 @@ export default class HomePage extends Component {
                 <button className="btn btn-block btn-secondary" onClick={this.onClick}>Create New Workout</button>
                 {
                     this.state.sessions.map(session => {
-                        return <SessionCard key={session.id} deleteSession={this.deleteSession} session={session}/>
+                        return <SessionCard key={session.id} copySession={this.copySession} deleteSession={this.deleteSession} session={session}/>
                     })
                 }
             </div>

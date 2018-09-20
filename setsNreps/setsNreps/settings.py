@@ -24,7 +24,11 @@ SECRET_KEY = '3vfsj5#t#r4m9kzhqnkxn!&xac)u8z8f$60c#5@^w%62$15xd)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'setsandreps.fitness',
+    'localhost',
+    '127.0.0.1',
+]
 
 # Application definition
 
@@ -123,6 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True

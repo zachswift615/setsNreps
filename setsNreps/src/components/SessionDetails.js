@@ -155,7 +155,8 @@ export default class SessionDetails extends Component {
                         </div> :
 
                         <h2 onClick={this.toggleIsEditingTitle}> {this.state.session.name}</h2>
-                }
+                    }
+                    <h6 className='text-muted'>{this.state.session.date_created}</h6>
                 {
                     this.state.tableFriendlySets.map((tableFriendlySet) => {
                         return <ExerciseTable key={tableFriendlySet.exercise_id}

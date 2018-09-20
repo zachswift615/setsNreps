@@ -42,8 +42,10 @@ urlpatterns = [
     url(r'^api/new-set-from-existing/$', views.new_set_from_existing),
 
     url(r'^api/session/(?P<pk>[0-9]+)/$', views.SessionDetail.as_view()),
+    url(r'^api/session/copy/(?P<pk>[0-9]+)/$', views.copy_session),
 
     url('api/emptyworkout', views.EmptyWorkout.as_view()),
     url('api/api-token-auth/', obtain_auth_token),
 
+    # re_path(‘.*’, TemplateView.as_view(template_name=‘index.html’)),
 ]

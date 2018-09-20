@@ -1,5 +1,7 @@
 export const APIURL = 'http://127.0.0.1:8000/api/'
 
+// export const APIURL = 'https://setsandreps.fitness/api/'
+
 export function new_set(exerciseid, previous, weight, reps, sessionid, order) {
  return fetch(`${APIURL}set/new-set/`, {
             method: "POST",

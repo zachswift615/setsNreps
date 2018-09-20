@@ -104,7 +104,7 @@ export default class Login extends Component {
           </form>
           <a href="/register">
             <button className="btn-lg btn btn-block form-signin">
-              Sign Up
+              Register
             </button>
           </a>
         </div>

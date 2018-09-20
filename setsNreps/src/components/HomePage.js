@@ -53,7 +53,7 @@ export default class HomePage extends Component {
     }
 
     deleteSession = (session_id) => {
-        fetch(`${APIURL}session/${session_id}`, {
+        fetch(`${APIURL}session/${session_id}/`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",

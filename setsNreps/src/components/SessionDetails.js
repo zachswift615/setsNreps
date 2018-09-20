@@ -93,7 +93,7 @@ export default class SessionDetails extends Component {
     componentDidMount() {
         document.body.style.backgroundColor = 'white';
         // get the list of all exercises and save them to state
-        fetch(`${APIURL}set/table-friendly-set-list/?session_id=${this.props.sessionId}`, {
+        fetch(`${APIURL}set/table-friendly-set-list/?session_id=${this.props.sessionId}/`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -104,7 +104,7 @@ export default class SessionDetails extends Component {
             .then(response => {
                 this.setState({tableFriendlySets: response});
             })
-        fetch(`${APIURL}session/${this.props.sessionId}`, {
+        fetch(`${APIURL}session/${this.props.sessionId}/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

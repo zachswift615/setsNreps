@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {new_set} from "../helpers";
 import ExerciseTable from "./ExerciseTable";
 import '../css/SessionDetail.css';
+import {APIURL} from '../helpers'
 
 export default class SessionDetails extends Component {
     state = {
@@ -33,7 +34,7 @@ export default class SessionDetails extends Component {
     }
 
     refreshSetsForSessionID = () => {
-        fetch(`http://localhost:8000/api/set/table-friendly-set-list/?session_id=${this.props.sessionId}`, {
+        fetch(`${APIURL}set/table-friendly-set-list/?session_id=${this.props.sessionId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +53,7 @@ export default class SessionDetails extends Component {
     };
 
     onSessionTitleEdit = (newTitle) => {
-        fetch(`http://localhost:8000/api/session/${this.props.sessionId}/`, {
+        fetch(`${APIURL}session/${this.props.sessionId}/`, {
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
@@ -70,7 +71,7 @@ export default class SessionDetails extends Component {
     }
 
     newSetFromExisting = (exerciseId) => {
-        fetch(`http://localhost:8000/api/new-set-from-existing/`, {
+        fetch(`${APIURL}new-set-from-existing/`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -92,7 +93,7 @@ export default class SessionDetails extends Component {
     componentDidMount() {
         document.body.style.backgroundColor = 'white';
         // get the list of all exercises and save them to state
-        fetch(`http://localhost:8000/api/set/table-friendly-set-list/?session_id=${this.props.sessionId}`, {
+        fetch(`${APIURL}set/table-friendly-set-list/?session_id=${this.props.sessionId}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -103,7 +104,7 @@ export default class SessionDetails extends Component {
             .then(response => {
                 this.setState({tableFriendlySets: response});
             })
-        fetch(`http://localhost:8000/api/session/${this.props.sessionId}`, {
+        fetch(`${APIURL}session/${this.props.sessionId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -115,7 +116,7 @@ export default class SessionDetails extends Component {
                 this.setState({session: response});
             })
         // get the list of all exercises and save them to state
-        fetch("http://localhost:8000/api/exercises/", {
+        fetch(`${APIURL}exercises/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

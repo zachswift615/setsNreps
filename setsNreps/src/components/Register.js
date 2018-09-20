@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../css/Register.css";
 import {Redirect} from 'react-router-dom';
+import {APIURL} from '../helpers.js'
+
 const swal = require("sweetalert");
 export default class Register extends React.Component {
   state = {
@@ -28,7 +30,7 @@ export default class Register extends React.Component {
       password: this.passwordRef.current.value,
       email: this.emailRef.current.value
     };
-    fetch("http://127.0.0.1:8000/api/users/create-account", {
+    fetch(`${APIURL}users/create-account`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

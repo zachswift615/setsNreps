@@ -44,6 +44,6 @@ urlpatterns = [
     url(r'^api/session/(?P<pk>[0-9]+)/$', views.SessionDetail.as_view()),
 
     url('api/emptyworkout', views.EmptyWorkout.as_view()),
-    url('api-token-auth/', obtain_auth_token),
+    url('api/api-token-auth/', obtain_auth_token),
 
 ]

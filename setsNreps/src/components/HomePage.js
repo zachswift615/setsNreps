@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom'
 import SessionCard from "./SessionCard";
 import '../css/HomePage.css';
+import {APIURL} from '../helpers.js'
 
 
 export default class HomePage extends Component {
@@ -12,7 +13,7 @@ export default class HomePage extends Component {
     }
 
     onClick = (e) => {
-        fetch("http://localhost:8000/api/session/new-workout/", {
+        fetch(`${APIURL}session/new-workout/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -39,7 +40,7 @@ export default class HomePage extends Component {
 
     refreshSessionList = () => {
        // get the list of all sessions and save them to state
-        fetch("http://localhost:8000/api/sessions/", {
+        fetch(`${APIURL}sessions/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -54,7 +55,7 @@ export default class HomePage extends Component {
     }
 
     deleteSession = (session_id) => {
-        fetch(`http://localhost:8000/api/session/${session_id}`, {
+        fetch(`${APIURL}session/${session_id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import '../css/SessionCard.css';
-
+import {APIURL} from '../helpers'
 
 export default class SessionCard extends Component {
     state = {
@@ -9,7 +9,7 @@ export default class SessionCard extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:8000/api/set/table-friendly-set-list/?session_id=${this.props.session.id}`, {
+        fetch(`${APIURL}set/table-friendly-set-list/?session_id=${this.props.session.id}`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

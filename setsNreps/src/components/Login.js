@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import HomePage from "./HomePage";
 import "../css/Login.css";
+import {APIURL} from '../helpers.js'
 
 const swal = require("sweetalert");
 
@@ -32,7 +33,7 @@ export default class Login extends Component {
     e.preventDefault();
     console.log(this.userNameRef.current.value);
     console.log(this.passwordRef.current.value);
-    fetch("http://localhost:8000/api-token-auth/", {
+    fetch(`${APIURL}api-token-auth/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

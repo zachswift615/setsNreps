@@ -238,7 +238,7 @@ def new_set_from_existing(request):
         return Response(format_error_response('missing required field exercise_id'), status=status.HTTP_406_NOT_ACCEPTABLE)
 
     most_recent_exercise_set = Set.objects.filter(
-        warmup=False, complete=True,
+        warmup=False, complete=True, session__user_id=request.user.id,
         exercise=exercise_id).order_by('-date_created').all()
 
     if most_recent_exercise_set:

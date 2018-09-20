@@ -11,8 +11,7 @@ body {
 }
 
 .swal-button {
-    opacity: 0.6;
-    border: 2px solid #de9391;
+    background-color: #ccc;
 }
 
 .form-signin, .form-register {

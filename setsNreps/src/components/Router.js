@@ -5,6 +5,7 @@ import Login from './Login';
 import HomePage from './HomePage';
 import SessionDetails from './SessionDetails';
 import Exercises from './Exercises';
+import Register from './Register';
 
 function isLoggedIn() {
     return localStorage.getItem('api-token') != null;
@@ -17,6 +18,7 @@ export default class Router extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/login" component={Login}/>
+                    <Route exact path="/register" component={Register}/>
                     <Route exact path="/" render={(props) => {
                         if (isLoggedIn()) {
                             return <HomePage/>

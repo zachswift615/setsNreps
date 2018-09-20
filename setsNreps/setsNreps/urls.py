@@ -34,6 +34,7 @@ urlpatterns = [
     url('api/session/new-workout/', views.new_workout),
     url('api/set/new-set/', views.new_set),
     url('api/sessions/', views.SessionList.as_view()),
+    url('api/users/create-account', views.CreateAccount.as_view()),
     url(r'^api/sets/(?P<pk>[0-9]+)/$', views.SetDetail.as_view()),
     url(r'^api/sets/$', views.SetList.as_view()),
 

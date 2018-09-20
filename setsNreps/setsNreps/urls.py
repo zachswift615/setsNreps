@@ -28,7 +28,7 @@ router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     url('api/users/create-account', views.CreateAccount.as_view()),
-    url(r'^api/', include(router.urls)),
+    # url(r'^api/', include(router.urls)),
     # url(r'^', include(router.urls)),
     url('admin/', admin.site.urls),
 

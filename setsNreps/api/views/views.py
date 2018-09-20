@@ -91,7 +91,7 @@ class MuscleGroupList(generics.ListCreateAPIView):
 
 
 class ExerciseList(generics.ListCreateAPIView):
-    queryset = Exercise.objects.all()
+    queryset = Exercise.objects.order_by('name').all()
     serializer_class = ExerciseSerializer
 
 

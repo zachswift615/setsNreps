@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import "../css/Register.css";
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import {APIURL} from '../helpers.js'
 
 const swal = require("sweetalert");
 export default class Register extends React.Component {
   state = {
     user: "",
-    password: ""
+    password: "",
+    home: false
   };
 
   emailRef = React.createRef();
@@ -59,7 +60,7 @@ export default class Register extends React.Component {
 
   render() {
       if (this.state.home) {
-          return <Redirect to='/'></Redirect>
+          return <Navigate to='/' replace />
       }
     return (
       <div className="registration-form container">

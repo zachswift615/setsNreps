@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 import SessionCard from "./SessionCard";
 import '../css/HomePage.css';
 import {APIURL} from '../helpers.js'
@@ -75,11 +75,11 @@ export default class HomePage extends Component {
 
     render() {
         if(this.state.logout) {
-            return <Redirect to={'login'}/>
+            return <Navigate to={'login'} replace />
         }
 
         if (this.state.newWorkout) {
-            return <Redirect to={`session/${this.state.newWorkout.id}`}/>
+            return <Navigate to={`session/${this.state.newWorkout.id}`} replace />
         }
 
         return (

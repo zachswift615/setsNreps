@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import React from 'react';
+import {BrowserRouter, Routes, Route, Navigate, useParams} from 'react-router-dom';
 import NotFound from './NotFound';
 import Login from './Login';
 import HomePage from './HomePage';
@@ -9,33 +9,35 @@ import Register from './Register';
 
 function isLoggedIn() {
     return localStorage.getItem('api-token') != null;
-
 }
 
-export default class Router extends React.Component {
-    render() {
-        return (
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/login" component={Login}/>
-                    <Route exact path="/register" component={Register}/>
-                    <Route exact path="/" render={(props) => {
-                        if (isLoggedIn()) {
-                            return <HomePage/>
-                        } else {
-                            return <Login/>
-                        }
-                    }}/>
-                    <Route exact path="/session/:sessionId" render={(props) => {
-                        if (isLoggedIn()) {
-                            return <SessionDetails sessionId={props.match.params.sessionId}/>
-                        } else {
-                            return <Login/>
-                        }
-                    }}/>
-                    <Route component={NotFound}/>
-                </Switch>
-            </BrowserRouter>
-        )
-    }
-};
+function ProtectedRoute({ children }) {
+    return isLoggedIn() ? children : <Navigate to="/login" replace />;
+}
+
+function SessionDetailsWrapper() {
+    const { sessionId } = useParams();
+    return <SessionDetails sessionId={sessionId} />;
+}
+
+export default function Router() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/login" element={<Login/>} />
+                <Route path="/register" element={<Register/>} />
+                <Route path="/" element={
+                    <ProtectedRoute>
+                        <HomePage/>
+                    </ProtectedRoute>
+                } />
+                <Route path="/session/:sessionId" element={
+                    <ProtectedRoute>
+                        <SessionDetailsWrapper />
+                    </ProtectedRoute>
+                } />
+                <Route path="*" element={<NotFound/>} />
+            </Routes>
+        </BrowserRouter>
+    );
+}

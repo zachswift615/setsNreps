@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Redirect} from 'react-router-dom';
 import '../css/SessionCard.css';
 import {APIURL} from '../helpers'
 

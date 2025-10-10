@@ -1,7 +1,7 @@
 """setsNreps URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.0/topics/http/urls/
+    https://docs.djangoproject.com/en/5.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -16,8 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
-from django.conf.urls import include, url
-from django.urls import re_path
+from django.urls import include, re_path
 from django.views.generic import TemplateView
 
 from api import views
@@ -27,27 +26,27 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-    url('api/users/create-account', views.CreateAccount.as_view()),
-    # url(r'^api/', include(router.urls)),
-    # url(r'^', include(router.urls)),
-    url('admin/', admin.site.urls),
+    re_path(r'^api/users/create-account/?$', views.CreateAccount.as_view()),
+    # re_path(r'^api/', include(router.urls)),
+    # re_path(r'^', include(router.urls)),
+    re_path(r'^admin/', admin.site.urls),
 
-    url('api/muscle_groups/', views.MuscleGroupList.as_view()),
-    url('api/exercises/', views.ExerciseList.as_view()),
-    url('api/session/new-workout/', views.new_workout),
-    url('api/set/new-set/', views.new_set),
-    url('api/sessions/', views.SessionList.as_view()),
-    url(r'^api/sets/(?P<pk>[0-9]+)/$', views.SetDetail.as_view()),
-    url(r'^api/sets/$', views.SetList.as_view()),
+    re_path(r'^api/muscle_groups/?$', views.MuscleGroupList.as_view()),
+    re_path(r'^api/exercises/?$', views.ExerciseList.as_view()),
+    re_path(r'^api/session/new-workout/?$', views.new_workout),
+    re_path(r'^api/set/new-set/?$', views.new_set),
+    re_path(r'^api/sessions/?$', views.SessionList.as_view()),
+    re_path(r'^api/sets/(?P<pk>[0-9]+)/?$', views.SetDetail.as_view()),
+    re_path(r'^api/sets/?$', views.SetList.as_view()),
 
-    url('api/set/table-friendly-set-list/', views.table_friendly_set_list),
-    url(r'^api/new-set-from-existing/$', views.new_set_from_existing),
+    re_path(r'^api/set/table-friendly-set-list/?$', views.table_friendly_set_list),
+    re_path(r'^api/new-set-from-existing/?$', views.new_set_from_existing),
 
-    url(r'^api/session/(?P<pk>[0-9]+)/$', views.SessionDetail.as_view()),
-    url(r'^api/session/copy/(?P<pk>[0-9]+)/$', views.copy_session),
+    re_path(r'^api/session/(?P<pk>[0-9]+)/?$', views.SessionDetail.as_view()),
+    re_path(r'^api/session/copy/(?P<pk>[0-9]+)/?$', views.copy_session),
 
-    url('api/emptyworkout', views.EmptyWorkout.as_view()),
-    url('api/api-token-auth/', obtain_auth_token),
+    re_path(r'^api/emptyworkout/?$', views.EmptyWorkout.as_view()),
+    re_path(r'^api/api-token-auth/?$', obtain_auth_token),
 
     # re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]

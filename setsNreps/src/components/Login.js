@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import HomePage from "./HomePage";
 import "../css/Login.css";
 import {APIURL} from '../helpers.js'
@@ -55,7 +55,7 @@ export default class Login extends Component {
 
   render() {
     if (this.state.goHome) {
-      return <Redirect to="/" />;
+      return <Navigate to="/" replace />;
     }
     return (
       <div className="row loadingPageLogin align-items-center">

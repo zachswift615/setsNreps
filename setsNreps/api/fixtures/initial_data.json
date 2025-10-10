@@ -1,0 +1,498 @@
+[
+  {
+    "model": "api.musclegroup",
+    "pk": 1,
+    "fields": {
+      "name": "Chest"
+    }
+  },
+  {
+    "model": "api.musclegroup",
+    "pk": 2,
+    "fields": {
+      "name": "Back"
+    }
+  },
+  {
+    "model": "api.musclegroup",
+    "pk": 3,
+    "fields": {
+      "name": "Shoulders"
+    }
+  },
+  {
+    "model": "api.musclegroup",
+    "pk": 4,
+    "fields": {
+      "name": "Arms"
+    }
+  },
+  {
+    "model": "api.musclegroup",
+    "pk": 5,
+    "fields": {
+      "name": "Legs"
+    }
+  },
+  {
+    "model": "api.musclegroup",
+    "pk": 6,
+    "fields": {
+      "name": "Abs"
+    }
+  },
+  {
+    "model": "api.musclegroup",
+    "pk": 7,
+    "fields": {
+      "name": "Glutes"
+    }
+  },
+  {
+    "model": "api.musclegroup",
+    "pk": 8,
+    "fields": {
+      "name": "Cardio"
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 1,
+    "fields": {
+      "name": "Flat Bench Press",
+      "muscle_groups": [1]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 2,
+    "fields": {
+      "name": "Incline Bench Press",
+      "muscle_groups": [1, 3]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 3,
+    "fields": {
+      "name": "Decline Bench Press",
+      "muscle_groups": [1]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 4,
+    "fields": {
+      "name": "Dumbbell Bench Press",
+      "muscle_groups": [1]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 5,
+    "fields": {
+      "name": "Push-ups",
+      "muscle_groups": [1, 4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 6,
+    "fields": {
+      "name": "Chest Fly",
+      "muscle_groups": [1]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 7,
+    "fields": {
+      "name": "Cable Crossover",
+      "muscle_groups": [1]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 8,
+    "fields": {
+      "name": "Barbell Deadlift",
+      "muscle_groups": [2, 5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 9,
+    "fields": {
+      "name": "Dumbbell Deadlift",
+      "muscle_groups": [2, 5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 10,
+    "fields": {
+      "name": "Romanian Deadlift",
+      "muscle_groups": [2, 5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 11,
+    "fields": {
+      "name": "Bent Over Row",
+      "muscle_groups": [2]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 12,
+    "fields": {
+      "name": "T-Bar Row",
+      "muscle_groups": [2]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 13,
+    "fields": {
+      "name": "Lat Pulldown",
+      "muscle_groups": [2]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 14,
+    "fields": {
+      "name": "Pull-ups",
+      "muscle_groups": [2, 4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 15,
+    "fields": {
+      "name": "Chin-ups",
+      "muscle_groups": [2, 4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 16,
+    "fields": {
+      "name": "Seated Cable Row",
+      "muscle_groups": [2]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 17,
+    "fields": {
+      "name": "Overhead Press",
+      "muscle_groups": [3]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 18,
+    "fields": {
+      "name": "Dumbbell Shoulder Press",
+      "muscle_groups": [3]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 19,
+    "fields": {
+      "name": "Lateral Raise",
+      "muscle_groups": [3]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 20,
+    "fields": {
+      "name": "Front Raise",
+      "muscle_groups": [3]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 21,
+    "fields": {
+      "name": "Rear Delt Fly",
+      "muscle_groups": [3]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 22,
+    "fields": {
+      "name": "Arnold Press",
+      "muscle_groups": [3]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 23,
+    "fields": {
+      "name": "Barbell Curl",
+      "muscle_groups": [4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 24,
+    "fields": {
+      "name": "Dumbbell Curl",
+      "muscle_groups": [4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 25,
+    "fields": {
+      "name": "Hammer Curl",
+      "muscle_groups": [4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 26,
+    "fields": {
+      "name": "Preacher Curl",
+      "muscle_groups": [4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 27,
+    "fields": {
+      "name": "Tricep Dip",
+      "muscle_groups": [4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 28,
+    "fields": {
+      "name": "Tricep Pushdown",
+      "muscle_groups": [4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 29,
+    "fields": {
+      "name": "Skull Crusher",
+      "muscle_groups": [4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 30,
+    "fields": {
+      "name": "Close Grip Bench Press",
+      "muscle_groups": [1, 4]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 31,
+    "fields": {
+      "name": "Barbell Squat",
+      "muscle_groups": [5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 32,
+    "fields": {
+      "name": "Front Squat",
+      "muscle_groups": [5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 33,
+    "fields": {
+      "name": "Goblet Squat",
+      "muscle_groups": [5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 34,
+    "fields": {
+      "name": "Leg Press",
+      "muscle_groups": [5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 35,
+    "fields": {
+      "name": "Leg Extension",
+      "muscle_groups": [5]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 36,
+    "fields": {
+      "name": "Leg Curl",
+      "muscle_groups": [5]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 37,
+    "fields": {
+      "name": "Bulgarian Split Squat",
+      "muscle_groups": [5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 38,
+    "fields": {
+      "name": "Lunges",
+      "muscle_groups": [5, 7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 39,
+    "fields": {
+      "name": "Calf Raise",
+      "muscle_groups": [5]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 40,
+    "fields": {
+      "name": "Hip Thrust",
+      "muscle_groups": [7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 41,
+    "fields": {
+      "name": "Glute Bridge",
+      "muscle_groups": [7]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 42,
+    "fields": {
+      "name": "Sit-ups",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 43,
+    "fields": {
+      "name": "Crunches",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 44,
+    "fields": {
+      "name": "Plank",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 45,
+    "fields": {
+      "name": "Russian Twist",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 46,
+    "fields": {
+      "name": "Leg Raise",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 47,
+    "fields": {
+      "name": "Bicycle Crunches",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 48,
+    "fields": {
+      "name": "Mountain Climbers",
+      "muscle_groups": [6, 8]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 49,
+    "fields": {
+      "name": "Ab Wheel Rollout",
+      "muscle_groups": [6]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 50,
+    "fields": {
+      "name": "Running",
+      "muscle_groups": [8]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 51,
+    "fields": {
+      "name": "Cycling",
+      "muscle_groups": [8, 5]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 52,
+    "fields": {
+      "name": "Rowing Machine",
+      "muscle_groups": [8, 2, 5]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 53,
+    "fields": {
+      "name": "Jump Rope",
+      "muscle_groups": [8]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 54,
+    "fields": {
+      "name": "Burpees",
+      "muscle_groups": [8, 6]
+    }
+  },
+  {
+    "model": "api.exercise",
+    "pk": 55,
+    "fields": {
+      "name": "Box Jumps",
+      "muscle_groups": [5, 8]
+    }
+  }
+]

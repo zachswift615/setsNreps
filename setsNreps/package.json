@@ -3,18 +3,46 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.5.0",
-    "react-bootstrap-table-next": "^1.1.4",
-    "react-bootstrap-table2-editor": "^1.0.1",
-    "react-dom": "^16.5.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.5",
-    "sweetalert": "^2.1.0"
+    "react": "^18.3.1",
+    "react-bootstrap-table-next": "^4.0.3",
+    "react-bootstrap-table2-editor": "^1.4.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "react-scripts": "5.0.1",
+    "sweetalert": "^2.1.2",
+    "web-vitals": "^4.2.4"
+  },
+  "overrides": {
+    "react-bootstrap-table-next": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    },
+    "react-bootstrap-table2-editor": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

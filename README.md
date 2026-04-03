@@ -1,4 +1,4 @@
-# setsNreps
+# Sets & Reps
 
 <img width="372" alt="image" src="https://user-images.githubusercontent.com/9255115/159035366-3328c724-c3e5-44f0-b422-83f5323911a9.png">
 
